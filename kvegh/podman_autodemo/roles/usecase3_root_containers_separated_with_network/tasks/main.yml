@@ -8,6 +8,14 @@
     gateway: 10.10.10.1
   # become: true
 
+- name: create pods
+  containers.podman.podman_pod: 
+    name: fantastic_pod_{{ item }}
+    state: started
+    ports:
+      - 8080:8080
+  with_sequence: start=2 end={{ counter }} stride=2
+
 - name: instantiate the DB container
   containers.podman.podman_container:
     name: quarkus_test_{{ item }}
@@ -17,6 +25,7 @@
     image: registry.redhat.io/rhel8/postgresql-12
     auto_remove: yes
     detach: yes
+    pod: fantastic_pod_{{ item }}
     env:
       POSTGRESQL_USER: "quarkus_test"
       POSTGRESQL_PASSWORD: "quarkus_test"

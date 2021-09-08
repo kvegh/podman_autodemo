@@ -1,13 +1,14 @@
 ---
-- name: UseCase2 containers running in the same pod
+- name: UseCase3 create rootcontainers with network
   hosts: "*pod-aut*"
   vars_files:
   - /home/ansible/vault-auth.yml
+  become: yes
 
   collections: 
     - kvegh.podman_autodemo
   roles: 
     - clean_env
     - prep_env
-    - usecase2_rootless_containers_within_same_pod
+    - usecase3_root_containers_separated_with_network
 

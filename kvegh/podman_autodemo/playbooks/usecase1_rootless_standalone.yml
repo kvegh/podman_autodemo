@@ -1,5 +1,5 @@
 ---
-- name: login and pull images
+- name: UseCase1 standalone containers
   hosts: "*pod-aut*"
   vars_files:
   - /home/ansible/vault-auth.yml

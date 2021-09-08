@@ -1,0 +1,11 @@
+---
+- name: login and pull images
+  hosts: "*pod-aut*"
+  vars_files:
+  - /home/ansible/vault-auth.yml
+
+  collections: 
+    - kvegh.podman_autodemo
+  roles: 
+    - clean_env
+

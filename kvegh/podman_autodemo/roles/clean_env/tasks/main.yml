@@ -1,0 +1,23 @@
+---
+# tasks file for clean_env
+
+- name: clean all nonroot containers 
+  command: podman kill -a 
+    
+- name: clean all root containers 
+  command: podman kill -a 
+  become: yes
+    
+- name: clean all nonroot podman_autodemo networks
+  containers.podman.podman_network: 
+    name: podman_autodemo
+    state: absent
+  
+- name: clean all root podman_autodemo networks
+  containers.podman.podman_network: 
+    name: podman_autodemo
+    state: absent
+  become: yes
+  
+  
+  

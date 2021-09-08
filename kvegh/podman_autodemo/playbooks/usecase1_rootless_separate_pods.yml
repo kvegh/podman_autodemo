@@ -1,0 +1,10 @@
+---
+- name: login and pull images
+  hosts: "*pod-aut*"
+  vars_files:
+  - files/vault-auth.yml
+
+  roles: 
+    - clean_env
+    - prep_env
+

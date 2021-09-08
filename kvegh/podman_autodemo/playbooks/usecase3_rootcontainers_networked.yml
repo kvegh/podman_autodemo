@@ -4,7 +4,8 @@
   vars_files:
   - /home/ansible/vault-auth.yml
   become: yes
-  counter: 10
+  vars:
+    counter: 10
 
   collections: 
     - kvegh.podman_autodemo

@@ -9,4 +9,5 @@
   roles: 
     - clean_env
     - prep_env
+    - usecase1_containers_in_separate_pods
 

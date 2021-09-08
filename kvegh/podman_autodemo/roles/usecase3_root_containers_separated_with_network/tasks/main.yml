@@ -8,37 +8,40 @@
     gateway: 10.10.10.1
   # become: true
 
-- name: instantiate the DB container
-  containers.podman.podman_container:
-    name: quarkus_test
-    state: started
-    network: autopod_network
-    ip: 10.10.10.100
-    image: registry.redhat.io/rhel8/postgresql-12
-    auto_remove: yes
-    detach: yes
-    env:
-      POSTGRESQL_USER: "quarkus_test"
-      POSTGRESQL_PASSWORD: "quarkus_test"
-      POSTGRESQL_DATABASE: "quarkus_test"
-      POSTGRESQL_SERVICE_HOST: "{{ ansible_default_ipv4.address }}"
-    ports:
-      - "5432:5432"
+- name: block to loop sequence 
+  block: 
+  - name: instantiate the DB container
+    containers.podman.podman_container:
+      name: quarkus_test
+      state: started
+      network: autopod_network
+      ip: 10.10.10.{{ counter }}
+      image: registry.redhat.io/rhel8/postgresql-12
+      auto_remove: yes
+      detach: yes
+      env:
+        POSTGRESQL_USER: "quarkus_test"
+        POSTGRESQL_PASSWORD: "quarkus_test"
+        POSTGRESQL_DATABASE: "quarkus_test"
+        POSTGRESQL_SERVICE_HOST: "{{ ansible_default_ipv4.address }}"
+      ports:
+        - "5432:5432"
 
-- name: instantiate the nodejs container
-  containers.podman.podman_container:
-    name: nodejs_test
-    state: started
-    network: autopod_network
-    ip: 10.10.10.200
-    image: quay.io/rbaumgar/nodejs-postgresql-persistent
-    auto_remove: yes
-    detach: yes
-    env:
-      POSTGRESQL_USER: "quarkus_test"
-      POSTGRESQL_PASSWORD: "quarkus_test"
-      POSTGRESQL_DATABASE: "quarkus_test"
-      POSTGRESQL_SERVICE_HOST: "{{ ansible_default_ipv4.address }}"
-    ports:
-      - "8080:8080"
+  - name: instantiate the nodejs container
+    containers.podman.podman_container:
+      name: nodejs_test
+      state: started
+      network: autopod_network
+      ip: 10.10.10.{{ counter | int + 1 }}
+      image: quay.io/rbaumgar/nodejs-postgresql-persistent
+      auto_remove: yes
+      detach: yes
+      env:
+        POSTGRESQL_USER: "quarkus_test"
+        POSTGRESQL_PASSWORD: "quarkus_test"
+        POSTGRESQL_DATABASE: "quarkus_test"
+        POSTGRESQL_SERVICE_HOST: "{{ ansible_default_ipv4.address }}"
+      ports:
+        - "8080:8080"
+  with_sequence: start=2 end={{ counter }} stride=2
 

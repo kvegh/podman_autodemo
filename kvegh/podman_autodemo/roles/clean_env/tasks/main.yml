@@ -10,12 +10,12 @@
     
 - name: clean all nonroot podman_autodemo networks
   containers.podman.podman_network: 
-    name: podman_autodemo
+    name: autopod_network
     state: absent
   
 - name: clean all root podman_autodemo networks
   containers.podman.podman_network: 
-    name: podman_autodemo
+    name: autopod_network
     state: absent
   become: yes
   

@@ -19,5 +19,18 @@
     state: absent
   become: yes
   
+- name: clean all nonroot podman_autodemo pods
+  containers.podman.podman_pod: 
+    name: fantastic_pod
+    state: absent
+  
+- name: clean all root podman_autodemo pods
+  containers.podman.podman_pod: 
+    name: fantastic_pod
+    state: absent
+  become: yes
+  
+  
+  
   
   

@@ -1,0 +1,16 @@
+---
+- name: UseCase3 create rootcontainers with network
+  hosts: "*pod-aut*"
+  vars_files:
+  - /home/ansible/vault-auth.yml
+  become: yes
+  vars:
+    counter: 10
+
+  collections: 
+    - kvegh.podman_autodemo
+  roles: 
+    - clean_env
+    - prep_env
+    - usecase4_kube_yaml_replay
+

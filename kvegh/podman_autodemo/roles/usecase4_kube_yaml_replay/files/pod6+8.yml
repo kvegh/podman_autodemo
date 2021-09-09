@@ -1,0 +1,318 @@
+# Generation of Kubernetes YAML is still under development!
+#
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-3.2.3
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-09-09T15:18:45Z"
+  labels:
+    app: fantasticpod6
+  name: fantastic_pod_6
+spec:
+  containers:
+  - args:
+    - run-postgresql
+    command:
+    - container-entrypoint
+    env:
+    - name: PATH
+      value: /opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - name: TERM
+      value: xterm
+    - name: container
+      value: oci
+    - name: PGUSER
+      value: postgres
+    - name: CONTAINER_SCRIPTS_PATH
+      value: /usr/share/container-scripts/postgresql
+    - name: POSTGRESQL_USER
+      value: quarkus_test
+    - name: POSTGRESQL_PASSWORD
+      value: quarkus_test
+    - name: DESCRIPTION
+      value: PostgreSQL is an advanced Object-Relational database management system
+        (DBMS). The image contains the client and server programs that you'll need
+        to create, run, maintain and access a PostgreSQL DBMS server.
+    - name: PLATFORM
+      value: el8
+    - name: APP_DATA
+      value: /opt/app-root
+    - name: POSTGRESQL_DATABASE
+      value: quarkus_test
+    - name: STI_SCRIPTS_PATH
+      value: /usr/libexec/s2i
+    - name: POSTGRESQL_VERSION
+      value: "12"
+    - name: POSTGRESQL_SERVICE_HOST
+      value: 10.10.10.106
+    - name: HOME
+      value: /var/lib/pgsql
+    - name: STI_SCRIPTS_URL
+      value: image:///usr/libexec/s2i
+    - name: APP_ROOT
+      value: /opt/app-root
+    - name: ENABLED_COLLECTIONS
+    - name: SUMMARY
+      value: PostgreSQL is an advanced Object-Relational database management system
+    image: registry.redhat.io/rhel8/postgresql-12:latest
+    name: quarkustest6
+    ports:
+    - containerPort: 8080
+      hostPort: 34739
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      runAsGroup: 26
+      runAsUser: 26
+      seLinuxOptions: {}
+    workingDir: /opt/app-root/src
+  - args:
+    - /bin/sh
+    - -c
+    - /usr/libexec/s2i/run
+    command:
+    - container-entrypoint
+    env:
+    - name: PATH
+      value: /opt/app-root/src/node_modules/.bin/:/opt/app-root/src/.npm-global/bin/:/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - name: TERM
+      value: xterm
+    - name: container
+      value: oci
+    - name: STI_SCRIPTS_URL
+      value: image:///usr/libexec/s2i
+    - name: CNB_USER_ID
+      value: "1001"
+    - name: NODEJS_VERSION
+      value: "12"
+    - name: CNB_STACK_ID
+      value: com.redhat.stacks.ubi8-nodejs-12
+    - name: DESCRIPTION
+      value: Node.js 12 available as container is a base platform for building and
+        running various Node.js 12 applications and frameworks. Node.js is a platform
+        built on Chrome's JavaScript runtime for easily building fast, scalable network
+        applications. Node.js uses an event-driven, non-blocking I/O model that makes
+        it lightweight and efficient, perfect for data-intensive real-time applications
+        that run across distributed devices.
+    - name: OPENSHIFT_BUILD_NAMESPACE
+      value: demo
+    - name: POSTGRESQL_DATABASE
+      value: quarkus_test
+    - name: POSTGRESQL_SERVICE_HOST
+      value: 10.10.10.106
+    - name: CNB_GROUP_ID
+      value: "0"
+    - name: HOME
+      value: /opt/app-root/src
+    - name: PLATFORM
+      value: el8
+    - name: NPM_MIRROR
+    - name: OPENSHIFT_BUILD_SOURCE
+      value: https://github.com/nodeshift-starters/nodejs-rest-http-crud.git
+    - name: NPM_CONFIG_PREFIX
+      value: /opt/app-root/src/.npm-global
+    - name: NAME
+      value: nodejs
+    - name: OPENSHIFT_BUILD_NAME
+      value: nodejs-postgresql-persistent-3
+    - name: STI_SCRIPTS_PATH
+      value: /usr/libexec/s2i
+    - name: POSTGRESQL_PASSWORD
+      value: quarkus_test
+    - name: NPM_RUN
+      value: start
+    - name: APP_ROOT
+      value: /opt/app-root
+    - name: SUMMARY
+      value: Platform for building and running Node.js 12 applications
+    - name: POSTGRESQL_USER
+      value: quarkus_test
+    - name: NODEJS_VER
+      value: "14"
+    - name: OPENSHIFT_BUILD_COMMIT
+      value: 0426a94874552e555f70fd75a6fb50ffbd0d6095
+    image: quay.io/rbaumgar/nodejs-postgresql-persistent:latest
+    name: nodejstest6
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      runAsGroup: 0
+      runAsUser: 1001
+      seLinuxOptions: {}
+    workingDir: /opt/app-root/src
+  dnsConfig: {}
+  restartPolicy: Never
+status: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-09-09T15:18:45Z"
+  labels:
+    app: fantasticpod8
+  name: fantastic_pod_8
+spec:
+  containers:
+  - args:
+    - /bin/sh
+    - -c
+    - /usr/libexec/s2i/run
+    command:
+    - container-entrypoint
+    env:
+    - name: PATH
+      value: /opt/app-root/src/node_modules/.bin/:/opt/app-root/src/.npm-global/bin/:/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - name: TERM
+      value: xterm
+    - name: container
+      value: oci
+    - name: NPM_CONFIG_PREFIX
+      value: /opt/app-root/src/.npm-global
+    - name: DESCRIPTION
+      value: Node.js 12 available as container is a base platform for building and
+        running various Node.js 12 applications and frameworks. Node.js is a platform
+        built on Chrome's JavaScript runtime for easily building fast, scalable network
+        applications. Node.js uses an event-driven, non-blocking I/O model that makes
+        it lightweight and efficient, perfect for data-intensive real-time applications
+        that run across distributed devices.
+    - name: NPM_MIRROR
+    - name: STI_SCRIPTS_URL
+      value: image:///usr/libexec/s2i
+    - name: OPENSHIFT_BUILD_SOURCE
+      value: https://github.com/nodeshift-starters/nodejs-rest-http-crud.git
+    - name: CNB_STACK_ID
+      value: com.redhat.stacks.ubi8-nodejs-12
+    - name: SUMMARY
+      value: Platform for building and running Node.js 12 applications
+    - name: OPENSHIFT_BUILD_COMMIT
+      value: 0426a94874552e555f70fd75a6fb50ffbd0d6095
+    - name: NODEJS_VER
+      value: "14"
+    - name: POSTGRESQL_DATABASE
+      value: quarkus_test
+    - name: POSTGRESQL_SERVICE_HOST
+      value: 10.10.10.108
+    - name: PLATFORM
+      value: el8
+    - name: OPENSHIFT_BUILD_NAMESPACE
+      value: demo
+    - name: APP_ROOT
+      value: /opt/app-root
+    - name: OPENSHIFT_BUILD_NAME
+      value: nodejs-postgresql-persistent-3
+    - name: POSTGRESQL_USER
+      value: quarkus_test
+    - name: CNB_GROUP_ID
+      value: "0"
+    - name: POSTGRESQL_PASSWORD
+      value: quarkus_test
+    - name: HOME
+      value: /opt/app-root/src
+    - name: NODEJS_VERSION
+      value: "12"
+    - name: NAME
+      value: nodejs
+    - name: STI_SCRIPTS_PATH
+      value: /usr/libexec/s2i
+    - name: NPM_RUN
+      value: start
+    - name: CNB_USER_ID
+      value: "1001"
+    image: quay.io/rbaumgar/nodejs-postgresql-persistent:latest
+    name: nodejstest8
+    ports:
+    - containerPort: 8080
+      hostPort: 41191
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      runAsGroup: 0
+      runAsUser: 1001
+      seLinuxOptions: {}
+    workingDir: /opt/app-root/src
+  - args:
+    - run-postgresql
+    command:
+    - container-entrypoint
+    env:
+    - name: PATH
+      value: /opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - name: TERM
+      value: xterm
+    - name: container
+      value: oci
+    - name: POSTGRESQL_VERSION
+      value: "12"
+    - name: ENABLED_COLLECTIONS
+    - name: STI_SCRIPTS_URL
+      value: image:///usr/libexec/s2i
+    - name: POSTGRESQL_PASSWORD
+      value: quarkus_test
+    - name: POSTGRESQL_SERVICE_HOST
+      value: 10.10.10.108
+    - name: SUMMARY
+      value: PostgreSQL is an advanced Object-Relational database management system
+    - name: PGUSER
+      value: postgres
+    - name: PLATFORM
+      value: el8
+    - name: POSTGRESQL_USER
+      value: quarkus_test
+    - name: DESCRIPTION
+      value: PostgreSQL is an advanced Object-Relational database management system
+        (DBMS). The image contains the client and server programs that you'll need
+        to create, run, maintain and access a PostgreSQL DBMS server.
+    - name: APP_ROOT
+      value: /opt/app-root
+    - name: HOME
+      value: /var/lib/pgsql
+    - name: CONTAINER_SCRIPTS_PATH
+      value: /usr/share/container-scripts/postgresql
+    - name: STI_SCRIPTS_PATH
+      value: /usr/libexec/s2i
+    - name: APP_DATA
+      value: /opt/app-root
+    - name: POSTGRESQL_DATABASE
+      value: quarkus_test
+    image: registry.redhat.io/rhel8/postgresql-12:latest
+    name: quarkustest8
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      runAsGroup: 26
+      runAsUser: 26
+      seLinuxOptions: {}
+    workingDir: /opt/app-root/src
+  dnsConfig: {}
+  restartPolicy: Never
+status: {}
+

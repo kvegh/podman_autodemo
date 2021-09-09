@@ -1,0 +1,15 @@
+---
+# tasks file for usecase4_kube_yaml_replay
+
+- name: NETWORK creation
+  containers.podman.podman_network:
+    name: autopod_network
+    subnet: 10.10.10.0/24
+    gateway: 10.10.10.1
+
+- name: replay kube yaml previously extracted 
+  containers.podman.podman_play:
+    network: autopod_network
+    state: started
+
+  

@@ -3,22 +3,22 @@
 
 - name: clean all nonroot containers 
   command: podman kill -a 
-    
+  ignore_errors: yes
+ 
 - name: clean all root containers 
   command: podman kill -a 
   become: yes
-    
-- name: clean all nonroot podman_autodemo networks
-  containers.podman.podman_network: 
-    name: autopod_network
-    state: absent
-  
-- name: clean all root podman_autodemo networks
-  containers.podman.podman_network: 
-    name: autopod_network
-    state: absent
+  ignore_errors: yes
+
+- name: clean all nonroot containers 
+  command: podman rm -a 
+  ignore_errors: yes
+ 
+- name: clean all root containers 
+  command: podman rm -a 
   become: yes
-  
+  ignore_errors: yes
+
 - name: clean all nonroot podman_autodemo pods
   containers.podman.podman_pod: 
     name: fantastic_pod
@@ -30,7 +30,24 @@
     state: absent
   become: yes
   
+- name: clean all nonroot containers 
+  command: podman pod rm -a 
+  ignore_errors: yes
+ 
+- name: clean all root containers 
+  command: podman pod rm -a 
+  become: yes
+  ignore_errors: yes
+
+
+- name: clean all nonroot podman_autodemo networks
+  containers.podman.podman_network: 
+    name: autopod_network
+    state: absent
   
-  
-  
+- name: clean all root podman_autodemo networks
+  containers.podman.podman_network: 
+    name: autopod_network
+    state: absent
+  become: yes
   

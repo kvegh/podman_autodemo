@@ -7,9 +7,16 @@
     subnet: 10.10.10.0/24
     gateway: 10.10.10.1
 
+- name: ensuring the Kube YAML file is there 
+  copy: 
+    src: pod6+8.yml
+    dest: /home/ansible/pod6+8.yml 
+
 - name: replay kube yaml previously extracted 
   containers.podman.podman_play:
     network: autopod_network
     state: started
+    kube_file: /home/ansible/pod6+8.yml
+
 
   

@@ -11,6 +11,8 @@
 - name: create pods
   containers.podman.podman_pod: 
     name: fantastic_pod_{{ item }}
+    network: autopod_network
+    ip: 10.10.10.{{ item | int + 100 }}
     state: started
     ports:
       - 8080:8080
@@ -21,7 +23,6 @@
     name: quarkus_test_{{ item }}
     state: started
     network: autopod_network
-    ip: 10.10.10.{{ item | int + 100 }}
     image: registry.redhat.io/rhel8/postgresql-12
     auto_remove: yes
     detach: yes
@@ -31,9 +32,7 @@
       POSTGRESQL_PASSWORD: "quarkus_test"
       POSTGRESQL_DATABASE: "quarkus_test"
       # POSTGRESQL_SERVICE_HOST: "{{ ansible_default_ipv4.address }}"
-      POSTGRESQL_SERVICE_HOST:  10.10.10.{{ item | int + 200 }}
-    ports:
-      - "5432:5432"
+      POSTGRESQL_SERVICE_HOST:  10.10.10.{{ item | int + 100 }}
   with_sequence: start=2 end={{ counter }} stride=2
 
 - name: instantiate the nodejs container
@@ -41,7 +40,6 @@
     name: nodejs_test_{{ item }}
     state: started
     network: autopod_network
-    ip: 10.10.10.{{ item | int + 200 }}
     image: quay.io/rbaumgar/nodejs-postgresql-persistent
     auto_remove: yes
     detach: yes
@@ -49,8 +47,6 @@
       POSTGRESQL_USER: "quarkus_test"
       POSTGRESQL_PASSWORD: "quarkus_test"
       POSTGRESQL_DATABASE: "quarkus_test"
-      POSTGRESQL_SERVICE_HOST:  10.10.10.{{ item | int + 200 }}
-    ports:
-      - "8080:8080"
+      POSTGRESQL_SERVICE_HOST:  10.10.10.{{ item | int + 100 }}
   with_sequence: start=2 end={{ counter }} stride=2
 

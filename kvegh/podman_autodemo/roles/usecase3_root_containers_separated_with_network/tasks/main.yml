@@ -6,7 +6,6 @@
     name: autopod_network
     subnet: 10.10.10.0/24
     gateway: 10.10.10.1
-  # become: true
 
 - name: create pods
   containers.podman.podman_pod: 
@@ -14,15 +13,14 @@
     network: autopod_network
     ip: 10.10.10.{{ item | int + 100 }}
     state: started
-    ports:
-      - 8080:8080
+    ports: 
+      - 8080
   with_sequence: start=2 end={{ counter }} stride=2
 
 - name: instantiate the DB container
   containers.podman.podman_container:
     name: quarkus_test_{{ item }}
     state: started
-    network: autopod_network
     image: registry.redhat.io/rhel8/postgresql-12
     auto_remove: yes
     detach: yes
@@ -39,10 +37,10 @@
   containers.podman.podman_container:
     name: nodejs_test_{{ item }}
     state: started
-    network: autopod_network
     image: quay.io/rbaumgar/nodejs-postgresql-persistent
     auto_remove: yes
     detach: yes
+    pod: fantastic_pod_{{ item }}
     env:
       POSTGRESQL_USER: "quarkus_test"
       POSTGRESQL_PASSWORD: "quarkus_test"

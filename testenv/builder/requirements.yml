@@ -1,0 +1,4 @@
+---
+# ansible collections: 
+collections: 
+  - kvegh.podman_autodemo

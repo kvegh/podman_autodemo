@@ -1,0 +1,2 @@
+FROM localhost/kvegh_af_ee
+COPY ssh_config /etc/ssh/ssh_config 

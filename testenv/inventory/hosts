@@ -1,0 +1,25 @@
+[baremetal]
+gateway
+hetzner
+
+[win_vms]
+win-web1 ansible_host=
+win-web2 ansible_host=
+
+[rhel_vms]
+rhel-pod-aut41.kveghdemo.at
+rhel-pod-aut42.kveghdemo.at
+rhel-1.kveghdemo.at
+rhel-2.kveghdemo.at
+
+[network]
+f5
+
+[ceph]
+
+[insights_vms]
+
+[infrastructure]
+rhnetappcluster
+rhnetappcluster2
+satellite

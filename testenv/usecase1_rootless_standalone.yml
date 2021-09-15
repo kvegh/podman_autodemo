@@ -1,0 +1,14 @@
+---
+- name: UseCase1 standalone containers
+  hosts: "*pod-aut*"
+  # moved vault data to controller custom creds and -e paramters to navigator. This section can be removed in the future if that worked. 
+  # vars_files:
+  #- /home/ansible/vault-auth.yml
+
+  collections: 
+    - kvegh.podman_autodemo
+  roles: 
+    - clean_env
+    - prep_env
+    - usecase1_rootless_containers_running_standalone
+

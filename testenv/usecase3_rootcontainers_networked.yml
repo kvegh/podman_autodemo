@@ -1,0 +1,17 @@
+---
+- name: UseCase3 create rootcontainers with network
+  hosts: "*pod-aut*"
+  # moved vault data to controller custom creds and -e paramters to navigator. This section can be removed in the future if that worked. 
+  # vars_files:
+  # - /home/ansible/vault-auth.yml
+  become: yes
+  vars:
+    counter: 10
+
+  collections: 
+    - kvegh.podman_autodemo
+  roles: 
+    - clean_env
+    - prep_env
+    - usecase3_root_containers_separated_with_network
+

@@ -1,0 +1,6 @@
+---
+ansible-navigator:
+  execution-environment:
+    pull-policy: missing
+  mode: interactive
+

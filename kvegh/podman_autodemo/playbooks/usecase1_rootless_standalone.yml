@@ -1,8 +1,9 @@
 ---
 - name: UseCase1 standalone containers
   hosts: "*pod-aut*"
-  vars_files:
-  - /home/ansible/vault-auth.yml
+  # moved vault data to controller custom creds and -e paramters to navigator. This section can be removed in the future if that worked. 
+  # vars_files:
+  #- /home/ansible/vault-auth.yml
 
   collections: 
     - kvegh.podman_autodemo
